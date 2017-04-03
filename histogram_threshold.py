@@ -11,8 +11,11 @@ import os
 from skimage import io
 from skimage.filters import threshold_otsu
 
+from scipy import misc
+
 print(os.getcwd())
-image = io.imread("/home/pawel1/Pulpit/Studia/Python/Speckle/E10/Dzien4/1T04629J.BMP")
+image = io.imread("/home/pawel1/Pulpit/Studia/Python/Speckle/E10/Dzien4/1T04633I.BMP")
+#image = misc.imread("/home/pawel1/Pulpit/Studia/Python/Speckle/E10/Dzien4/1T04629J.BMP")
 thresh = threshold_otsu(image)
 binary = image > thresh
 

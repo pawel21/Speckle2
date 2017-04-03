@@ -1,1 +1,5 @@
-# Speckle2
+# Speckle
+Requaried package: mahotas
+You can install by command:
+`conda config --add channels conda-forge`
+`conda install mahotas`
