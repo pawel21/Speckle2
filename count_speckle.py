@@ -14,6 +14,9 @@ img_filt = mh.gaussian_filter(img, 10)
 labeled, nr_objects = mh.label(img_filt > T)
 T_filt = mh.thresholding.otsu(img_filt.astype('uint8'))
 
+obj_areas = np.sum(np.sum(img_filt>T))
+print("mean area {}".format(obj_areas/nr_objects))
+
 
 axes[0].imshow(img, cmap=plt.cm.gray)
 axes[0].set_title("orginal image")
@@ -22,6 +25,7 @@ axes[1].set_title("Threshold")
 axes[2].imshow(img_filt, cmap=plt.cm.gray)
 axes[2].set_title("Gauss filt")
 axes[3].imshow(img_filt > T_filt, cmap=plt.cm.gray)
+
 
 
 plt.show()
