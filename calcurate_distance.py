@@ -21,7 +21,7 @@ plt.rcParams.update({'font.size': 15})
 
 CCD_AREA = 0.08602  # cm^2
 IMG_PIXELS = 350208
-SIGMA = 12
+SIGMA = 32
 
 cwd = os.getcwd()
 path = os.path.join(cwd, "test", '1T03702L.BMP')
@@ -42,6 +42,24 @@ def calcurate_distance_between_2_and_n(location_list):
                       distance.euclidean(location_list[1], location_list[n])
     return distance_dict   
 
+def calcurate_distance_between_3_and_n(location_list):
+    distance_dict = {}
+    for n in range(3, len(location_list)):
+        distance_dict["distance between 3 and {}".format(n+1)] = \
+                      distance.euclidean(location_list[2], location_list[n])
+    return distance_dict 
+
+def calcurate_distance_between_m_and_n(location_list, m):
+    """
+    return dictionary of distance between points m and n, where n is ones 
+    of points in location_list and m number is start point 
+    """
+    distance_dict = {}
+    for n in range(m, len(location_list)):
+        distance_dict["distance between {} and {}".format(m, n+1)] = \
+                      distance.euclidean(location_list[m-1], location_list[n])
+    return distance_dict 
+
 img = misc.imread(path)
 fig, axes = plt.subplots(ncols=4, figsize=(10, 5.5))
 threshold = np.mean(img)
@@ -56,8 +74,10 @@ for k in range(1, nr_objects+1):
     location = str(center_of_mass(img, labeled, k))
     print("Object {} center of mass at {}".format(k, location))
     
-
-
+#print(calcurate_distance_between_1_and_n(location_list))
+#print(calcurate_distance_between_2_and_n(location_list))
+print(calcurate_distance_between_3_and_n(location_list))
+print(calcurate_distance_between_m_and_n(location_list, 3))
 
 axes[0].imshow(img, cmap=plt.cm.gray)
 axes[0].set_title("orginal image")
