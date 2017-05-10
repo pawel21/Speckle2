@@ -21,7 +21,7 @@ plt.rcParams.update({'font.size': 15})
 
 CCD_AREA = 0.08602  # cm^2
 IMG_PIXELS = 350208
-SIGMA = 32
+SIGMA = 0
 
 cwd = os.getcwd()
 path = os.path.join(cwd, "test", '1T03702L.BMP')
@@ -63,6 +63,7 @@ def calcurate_distance_between_m_and_n(location_list, m):
 img = misc.imread(path)
 fig, axes = plt.subplots(ncols=4, figsize=(10, 5.5))
 threshold = np.mean(img)
+SIGMA = img.std()
 
 img_filt = ndimage.gaussian_filter(img, SIGMA)
 labeled, nr_objects = label(img_filt > threshold)

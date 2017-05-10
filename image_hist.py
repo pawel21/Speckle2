@@ -7,7 +7,7 @@ from scipy.stats import kurtosis
 from scipy.stats import skew
 
 cwd = os.getcwd()
-path = os.path.join(cwd, "test", '1T04633E.BMP')
+path = os.path.join(cwd, "test", '1T03702L.BMP')
 
 img = misc.imread(path)
 fig, axes = plt.subplots()
